@@ -1,9 +1,9 @@
-FROM spark-base-miniconda:2.4.0-hadoop2.7
+FROM spark-base-miniconda:2.3.1-hadoop2.7
 MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
 
-ENV APACHE_SPARK_VERSION 2.4.0
+ENV APACHE_SPARK_VERSION 2.3.1
 ENV APACHE_HADOOP_VERSION 2.7.0
-ENV ZEPPELIN_VERSION 0.8.1
+ENV ZEPPELIN_VERSION 0.8.0
 
 # RUN apt-get update && apt-get install wget
 RUN set -x \
