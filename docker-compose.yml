@@ -19,7 +19,7 @@ services:
       - 127.0.0.1:8081:8081
     environment:
       - "SPARK_WORKER_WEBUI_PORT=8081"
-      - "SPARK_MASTER=spark://your-host:7077"
+      - "SPARK_MASTER=spark://your-hostname:7077"
     network_mode: "host"
   spark-worker-2:
     build: ./worker
@@ -30,5 +30,22 @@ services:
       - 127.0.0.1:8082:8082
     environment:
       - "SPARK_WORKER_WEBUI_PORT=8082"
-      - "SPARK_MASTER=spark://your-host:7077"
+      - "SPARK_MASTER=spark://your-hostname:7077"
+    network_mode: "host"
+  zeppelin:
+    build: ./zeppelin
+    ports:
+    - 6060:6060
+    volumes:
+    - ./notebook:/opt/zeppelin/notebook
+    - ./config_files/zeppelin/zeppelin-site.xml:/opt/zeppelin/conf/zeppelin-site.xml
+    - ./config_files/zeppelin/shiro.ini:/opt/zeppelin/conf/shiro.ini
+    - ./config_files/zeppelin/interpreter.json:/opt/zeppelin/conf/interpreter.json
+    - ./config_files/zeppelin/zeppelin-env.sh:/opt/zeppelin/conf/zeppelin-env.sh
+    environment:
+      CORE_CONF_fs_defaultFS: "hdfs://localhost:54310"
+      SPARK_MASTER: "spark://your-hostname:7077"
+      MASTER: "spark://your-hostname:7077"
+    depends_on:
+    - spark-master
     network_mode: "host"
