@@ -48,7 +48,7 @@ services:
       - 127.0.0.1:8081:8081
     environment:
       - "SPARK_WORKER_WEBUI_PORT=8081"
-      - "SPARK_MASTER=spark://your-host:7077"
+      - "SPARK_MASTER=spark://your-hostname:7077"
     network_mode: "host"
   spark-worker-2:
     build: ./worker
@@ -59,10 +59,28 @@ services:
       - 127.0.0.1:8082:8082
     environment:
       - "SPARK_WORKER_WEBUI_PORT=8082"
-      - "SPARK_MASTER=spark://your-host:7077"
+      - "SPARK_MASTER=spark://your-hostname:7077"
+    network_mode: "host"
+  zeppelin:
+    build: ./zeppelin
+    ports:
+      - 6060:6060
+    volumes:
+      - ./zeppelin/notebook:/opt/zeppelin/notebook
+      - ./zeppelin/conf/:/opt/zeppelin/conf/
+      - ./zeppelin/jarFiles/:/opt/zeppelin/localJarFiles/
+    environment:
+      CORE_CONF_fs_defaultFS: "hdfs://localhost:54310"
+      SPARK_MASTER: "spark://your-hostname:7077"
+      MASTER: "spark://your-hostname:7077"
+    depends_on:
+      - spark-master
     network_mode: "host"
 ```
 Make sure to fill in the `INIT_DAEMON_STEP` as configured in your pipeline.
+Make sure to replace the `your-hostname` with your hostname.
+Make sure to add your zeppelin config files to `zeppelin/conf` directory. (for example it is necessary to add zeppelin-site.xml and change the zeppelin port to 6060 by default it is set on 8080 and conflict by spark ports)
+You could find some important config files in .gitignore.
 
 ## Running Docker containers without the init daemon
 ### Spark Master
