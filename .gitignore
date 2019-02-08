@@ -1,4 +1,11 @@
-notebook/
+zeppelin/notebook/*
+!zeppelin/notebook/2A94M5J1Z
+!zeppelin/notebook/2BWJFTXKJ
+!zeppelin/notebook/2BYEZ5EVK
+!zeppelin/notebook/2C2AUG798
+!zeppelin/notebook/2C35YU814
+!zeppelin/notebook/2C57UKYWR
+
 .idea/
 zeppelin/jarFiles/
 !zeppelin/jarFiles/PLACEHOLDER
