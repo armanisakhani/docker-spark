@@ -1,1 +1,8 @@
-*~
+notebook/
+.idea/
+zeppelin/jarFiles/
+!zeppelin/jarFiles/PLACEHOLDER
+zeppelin/conf/shiro.ini
+zeppelin/conf/zeppelin-env.sh
+zeppelin/conf/zeppelin-site.xml
+zeppelin/conf/interpreter.json
