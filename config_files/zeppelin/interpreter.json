@@ -62,12 +62,12 @@
         },
         "spark.cores.max": {
           "name": "spark.cores.max",
-          "value": "5",
+          "value": "15",
           "type": "number"
         },
         "spark.executor.memory": {
           "name": "spark.executor.memory",
-          "value": "4G",
+          "value": "40G",
           "type": "string"
         },
         "zeppelin.spark.sql.interpolation": {
@@ -92,7 +92,7 @@
         },
         "master": {
           "name": "master",
-          "value": "spark://arman-UX430UNR:7077",
+          "value": "spark://your-hostname:7077",
           "type": "string"
         },
         "zeppelin.pyspark.python": {
@@ -308,10 +308,6 @@
     }
   },
   "interpreterBindings": {
-    "2E3MNPE28": [
-      "spark",
-      "python"
-    ]
   },
   "interpreterRepositories": [
     {

@@ -12,9 +12,6 @@ RUN set -x \
     && mv /opt/zeppelin-* /opt/zeppelin \
     && rm /tmp/zeppelin.tgz
 
-#ENV SPARK_SUBMIT_OPTIONS "--jars /opt/zeppelin/sansa-examples-spark-2016-12.jar"
-
-RUN conda install -y -c anaconda grpcio
 
 WORKDIR /opt/zeppelin
 

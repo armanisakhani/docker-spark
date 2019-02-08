@@ -35,17 +35,18 @@ services:
   zeppelin:
     build: ./zeppelin
     ports:
-    - 6060:6060
+      - 6060:6060
     volumes:
-    - ./notebook:/opt/zeppelin/notebook
-    - ./config_files/zeppelin/zeppelin-site.xml:/opt/zeppelin/conf/zeppelin-site.xml
-    - ./config_files/zeppelin/shiro.ini:/opt/zeppelin/conf/shiro.ini
-    - ./config_files/zeppelin/interpreter.json:/opt/zeppelin/conf/interpreter.json
-    - ./config_files/zeppelin/zeppelin-env.sh:/opt/zeppelin/conf/zeppelin-env.sh
+      - ./notebook:/opt/zeppelin/notebook
+      - ./config_files/zeppelin/zeppelin-site.xml:/opt/zeppelin/conf/zeppelin-site.xml
+      - ./config_files/zeppelin/shiro.ini:/opt/zeppelin/conf/shiro.ini
+      - ./config_files/zeppelin/interpreter.json:/opt/zeppelin/conf/interpreter.json
+      - ./config_files/zeppelin/zeppelin-env.sh:/opt/zeppelin/conf/zeppelin-env.sh
+      - ./config_files/zeppelin/jarFiles/:/opt/zeppelin/localJarFiles/
     environment:
       CORE_CONF_fs_defaultFS: "hdfs://localhost:54310"
       SPARK_MASTER: "spark://your-hostname:7077"
       MASTER: "spark://your-hostname:7077"
     depends_on:
-    - spark-master
+      - spark-master
     network_mode: "host"
